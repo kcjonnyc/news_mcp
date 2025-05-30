@@ -6,13 +6,13 @@ import {
   SourcesResponse,
   TopHeadlinesParams
 } from './types';
-import {apiConfig} from './config';
+import {config} from './config';
 
 export class NewsApiClient {
   private apiKey: string;
   private baseUrl: string;
 
-  constructor(apiKey = apiConfig.key, baseUrl = apiConfig.baseUrl) {
+  constructor(apiKey = config.api.key, baseUrl = config.api.baseUrl) {
     this.apiKey = apiKey;
     this.baseUrl = baseUrl;
   }
