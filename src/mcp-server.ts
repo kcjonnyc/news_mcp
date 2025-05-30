@@ -1,6 +1,8 @@
 import {McpServer} from '@modelcontextprotocol/sdk/server/mcp.js';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 import {searchArticles, SearchArticlesParamsSchema} from './tools/search-articles';
+import {getTopHeadlines, TopHeadlinesParamsSchema} from './tools/top-headlines';
+import {getSources, SourcesParamsSchema} from './tools/sources';
 import {config} from './config';
 
 function registerTools(server: McpServer) {
@@ -9,6 +11,38 @@ function registerTools(server: McpServer) {
     SearchArticlesParamsSchema.shape,
     async (params) => {
       const result = await searchArticles(params);
+      return {
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify(result, null, 2)
+          }
+        ]
+      };
+    }
+  );
+
+  server.tool(
+    'getTopHeadlines',
+    TopHeadlinesParamsSchema.shape,
+    async (params) => {
+      const result = await getTopHeadlines(params);
+      return {
+        content: [
+          {
+            type: 'text',
+            text: JSON.stringify(result, null, 2)
+          }
+        ]
+      };
+    }
+  );
+
+  server.tool(
+    'getSources',
+    SourcesParamsSchema.shape,
+    async (params) => {
+      const result = await getSources(params);
       return {
         content: [
           {
