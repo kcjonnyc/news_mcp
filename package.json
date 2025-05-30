@@ -19,7 +19,7 @@
     "newsapi"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
     "@types/node": "^22.15.24",
